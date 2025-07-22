@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .todo-container {
+      background: #fff;
+      padding: 30px;
+      margin-top: 50px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #333;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      width: 75%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background: #28a745;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      background: #f9f9f9;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .delete-btn:hover {
+      background: #c82333;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #1976d2;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="todo-container">
+  <h2>📝 To-Do List</h2>
+  <input type="text" id="taskInput" placeholder="Add a new task..." />
+  <button onclick="addTask()">Add</button>
+
+  <ul id="taskList"></ul>
+
+  <a href="index.html" class="back-link">← Back to Home</a>
+</div>
+
+<script>
+  function addTask() {
+    const taskInput = document.getElementById('taskInput');
+    const taskText = taskInput.value.trim();
+
+    if (taskText === "") {
+      alert("Please enter a task.");
+      return;
+    }
+
+    const li = document.createElement('li');
+    li.textContent = taskText;
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.onclick = function () {
+      li.remove();
+    };
+
+    li.appendChild(deleteBtn);
+    document.getElementById('taskList').appendChild(li);
+
+    taskInput.value = '';
+  }
+</script>
+
+</body>
+</html>
